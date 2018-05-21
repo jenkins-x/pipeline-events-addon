@@ -2,3 +2,7 @@ elasticsearch:
   client:
     serviceAnnotations: 
       jenkins-x.io/pipeline.event.consumer: "true"
+
+kibana:
+  env:
+    ELASTICSEARCH_URL: http://jx-pipeline-events-elasticsearch-client-client:9200
