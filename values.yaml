@@ -2,9 +2,6 @@ elasticsearch:
   client:
     serviceAnnotations: 
       jenkins-x.io/pipeline.event.consumer: "true"
-  appVersion: "6.1"
-  image:
-    tag: "6.1"
 
 kibana:
   env:
