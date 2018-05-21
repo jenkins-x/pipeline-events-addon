@@ -5,4 +5,4 @@ elasticsearch:
 
 kibana:
   env:
-    ELASTICSEARCH_URL: http://jx-pipeline-events-elasticsearch-client-client:9200
+    ELASTICSEARCH_URL: http://jx-pipeline-events-elasticsearch-client:9200
