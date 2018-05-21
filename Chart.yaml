@@ -1,0 +1,11 @@
+name: pipeline-events-addon
+home: https://jenkins-x.github.io/jenkins-x-website/
+version: 0.0.1-SNAPSHOT
+description: Jenkins X addon that enables the capturing of pipeline event activities
+maintainers:
+- name: Jenkins X Team
+  email: jenkins-x@googlegroups.com
+icon: https://jenkins-x.github.io/jenkins-x-website/img/profile.png
+sources:
+- https://github.com/jenkins-x/pipeline-events-addon
+- https://github.com/kubernetes/charts

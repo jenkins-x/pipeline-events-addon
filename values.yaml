@@ -1,0 +1,4 @@
+elasticsearch:
+  client:
+    serviceAnnotations: 
+      jenkins-x.io/pipeline.event.consumer: true
