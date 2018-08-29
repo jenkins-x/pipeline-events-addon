@@ -1,6 +1,5 @@
 pipeline {
     environment {
-        GH_CREDS = credentials('jenkins-x-github')
         CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
     agent {
@@ -36,7 +35,7 @@ pipeline {
                         sh "git checkout master"
 
                         sh "git config credential.helper store"
-
+                        sh "jx step git credentials"
                         sh "helm init --client-only"
                         sh "helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com"
                         sh "helm repo add stable https://kubernetes-charts.storage.googleapis.com"
