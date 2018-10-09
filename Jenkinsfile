@@ -2,9 +2,7 @@ pipeline {
     environment {
         CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
-    agent {
-        label "jenkins-jx-base"
-    }
+    agent any
     stages {
         stage('CI Build') {
             when {
@@ -13,12 +11,10 @@ pipeline {
             steps {
                 dir ('/home/jenkins/pipeline-events-addon') {
                     checkout scm
-                    container('jx-base') {
-                        sh "helm init --client-only"
+                    sh "helm init --client-only"
 
-                        sh "make build"
-                        sh "helm template ."
-                    }
+                    sh "make build"
+                    sh "helm template ."
                 }
             }
         }
@@ -29,19 +25,17 @@ pipeline {
             }
             steps {
                 dir ('/home/jenkins/pipeline-events-addon') {
-                    checkout scm
-                    container('jx-base') {
+                    git "https://github.com/jenkins-x/pipeline-events-addon"
 
-                        sh "git checkout master"
+                    sh "git checkout master"
 
-                        sh "git config credential.helper store"
-                        sh "jx step git credentials"
-                        sh "helm init --client-only"
-                        sh "helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com"
-                        sh "helm repo add stable https://kubernetes-charts.storage.googleapis.com"
-                        sh "helm repo add jx http://chartmuseum.build.cd.jenkins-x.io"
-                        sh "make release"
-                    }
+                    sh "git config credential.helper store"
+                    sh "jx step git credentials"
+                    sh "helm init --client-only"
+                    sh "helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com"
+                    sh "helm repo add stable https://kubernetes-charts.storage.googleapis.com"
+                    sh "helm repo add jx http://chartmuseum.build.cd.jenkins-x.io"
+                    sh "make release"
                 }
             }
         }
